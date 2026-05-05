@@ -1,58 +1,30 @@
-/**
- * script.js
- * Injects a sleek trailing cursor and binds it to your interactions.
- */
+// Track mouse movement to create an interactive background glow
+document.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth) * 100;
+  const y = (e.clientY / window.innerHeight) * 100;
 
+  // Set CSS variables on the root element
+  document.documentElement.style.setProperty('--mouse-x', `${x}%`);
+  document.documentElement.style.setProperty('--mouse-y', `${y}%`);
+});
+
+// Add a fun typing effect on load for the highlight
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Create the custom cursor elements dynamically
-  const cursorDot = document.createElement('div');
-  cursorDot.className = 'custom-cursor-dot';
-  document.body.appendChild(cursorDot);
+    const highlightElement = document.querySelector('.highlight');
+    if (highlightElement) {
+        const text = highlightElement.textContent;
+        highlightElement.textContent = '';
+        let i = 0;
 
-  const cursorFollower = document.createElement('div');
-  cursorFollower.className = 'custom-cursor-follower';
-  document.body.appendChild(cursorFollower);
+        function typeWriter() {
+            if (i < text.length) {
+                highlightElement.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
 
-  // 2. Track mouse position
-  let mouseX = 0, mouseY = 0;
-  let followerX = 0, followerY = 0;
-
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-
-    // The dot perfectly tracks the mouse without delay
-    cursorDot.style.left = `${mouseX}px`;
-    cursorDot.style.top = `${mouseY}px`;
-  });
-
-  // 3. Animate the follower with a smooth delay (lerp)
-  function animateCursor() {
-    // Ease factor (lower is slower)
-    const ease = 0.15;
-    followerX += (mouseX - followerX) * ease;
-    followerY += (mouseY - followerY) * ease;
-
-    cursorFollower.style.left = `${followerX}px`;
-    cursorFollower.style.top = `${followerY}px`;
-
-    requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
-
-  // 4. Add sleek hover interaction when mouse touches interactive elements
-  const linksAndButtons = document.querySelectorAll('a, button, .highlight, .logo');
-
-  linksAndButtons.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursorFollower.classList.add('hover-state');
-      // Hide the dot for a cleaner look while hovering
-      cursorDot.style.opacity = '0';
-    });
-
-    el.addEventListener('mouseleave', () => {
-      cursorFollower.classList.remove('hover-state');
-      cursorDot.style.opacity = '1';
-    });
-  });
+        // Start typing effect after a short delay
+        setTimeout(typeWriter, 400);
+    }
 });
