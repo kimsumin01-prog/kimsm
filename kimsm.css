@@ -1,187 +1,219 @@
-/**
- * style.css
- * Minimalistic, black and white layout tailored exactly for your HTML.
- */
-
-:root {
-  --bg-color: #000000;
-  --text-color: #ffffff;
-  --muted-color: #888888;
-  --font-heading: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
-}
-
+/* Reset & Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: var(--font-body);
-  /* Hide the default mouse cursor for our custom sleek cursor */
-  cursor: none;
-  overflow-x: hidden;
+:root {
+  /* Dynamic Black, White & Red Palette */
+  --color-bg: #FFFFFF;
+  --color-text: #050505;
+  --color-accent: #E63946;  /* Vibrant Red */
+  --color-accent-hover: #D90429;
+  --color-gray: #666666;
+  --color-border: #E5E7EB;
+
+  --font-primary: 'Inter', system-ui, sans-serif;
 }
 
-/* --- Typography --- */
-a {
-  text-decoration: none;
-  color: var(--text-color);
+::selection {
+  background-color: rgba(230, 57, 70, 0.2);
+  color: var(--color-accent);
 }
 
-/* --- Navigation --- */
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg);
+
+  /* Interactive red glow that will follow the mouse via JS */
+  background-image:
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(230, 57, 70, 0.08) 0%, transparent 40vw);
+  background-attachment: fixed;
+
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-weight: 800; /* Extra bold for harsh clean contrast */
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+}
+
+p {
+  font-size: 1.125rem;
+  font-weight: 400;
+  max-width: 60ch;
+  color: var(--color-gray);
+  margin-bottom: 2rem;
+}
+
+/* Center and bound main sections */
+header, main, footer {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header & Navigation */
 header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 3rem 4rem;
-  z-index: 100;
-  mix-blend-mode: difference;
+  padding: 2.5rem 0;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
 }
 
 .logo {
   font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -1px;
-  text-transform: lowercase;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+}
+
+/* A trendy little colored dot appended to the logo via CSS */
+.logo::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  margin-left: 2px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover::after {
+  animation: bounceDot 0.6s infinite alternate;
+}
+
+@keyframes bounceDot {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
 }
 
 .nav-links {
-  display: flex;
-  gap: 3rem;
   list-style: none;
+  display: flex;
+  gap: 2.5rem;
 }
 
 .nav-links a {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--color-gray);
   position: relative;
-  padding-bottom: 4px;
+  transition: color 0.3s ease;
 }
 
-/* Hover line effect on nav links */
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: 0; left: 0;
-  width: 0%;
-  height: 1px;
-  background-color: var(--text-color);
-  transition: width 0.3s ease;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-accent);
+  transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.nav-links a:hover {
+  color: var(--color-text);
 }
 
 .nav-links a:hover::after {
   width: 100%;
 }
 
-/* --- Main Content Layout --- */
-main {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* --- Hero Section --- */
+/* Hero Section */
 .hero {
-  flex-grow: 1;
+  min-height: 65vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 2rem;
-  margin-top: 5rem;
+  align-items: flex-start;
+  padding: 4rem 0;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .hero h1 {
-  font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
+  font-size: clamp(3rem, 8vw, 5.5rem);
   margin-bottom: 1.5rem;
 }
 
+/* Highlighted Text */
 .highlight {
-  font-weight: 700;
-  font-style: italic;
+  color: var(--color-accent);
 }
 
-.hero p {
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  color: var(--muted-color);
-  margin-bottom: 4rem;
-  max-width: 600px;
-}
-
-/* --- Minimalist Button --- */
+/* Button */
 .btn-primary {
   display: inline-block;
-  padding: 1.2rem 3rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 100px;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all 0.4s ease;
-  background: transparent;
+  padding: 1rem 2.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border-radius: 100px; /* High-end pill shape */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-top: 1rem;
+  border: 2px solid transparent;
 }
 
 .btn-primary:hover {
-  background: var(--text-color);
-  color: var(--bg-color);
-  border-color: var(--text-color);
+  background-color: var(--color-text);
+  color: #ffffff;
+  box-shadow: 0 10px 25px -5px rgba(230, 57, 70, 0.4);
+  transform: translateY(-4px) scale(1.03);
 }
 
-/* --- Footer --- */
+/* Footer */
 footer {
   text-align: center;
-  padding: 3rem 0;
-  color: var(--muted-color);
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--color-border);
 }
 
-/* --- Custom Cursor Classes (Generated by JS) --- */
-.custom-cursor-dot {
-  position: fixed;
-  top: 0; left: 0;
-  width: 6px; height: 6px;
-  background-color: var(--text-color);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
+footer p {
+  font-size: 0.875rem;
+  color: var(--color-gray);
 }
 
-.custom-cursor-follower {
-  position: fixed;
-  top: 0; left: 0;
-  width: 40px; height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Cursor Hover State */
-.custom-cursor-follower.hover-state {
-  width: 70px;
-  height: 70px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: transparent;
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
 }
