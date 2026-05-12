@@ -4,70 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO -->
-  <title>Kim Sumin | Portfolio</title>
-  <meta name="description" content="A minimalistic black and white portfolio.">
+  <title>Sumin Kim | Portfolio</title>
+  <meta name="description" content="Portfolio of Sumin Kim.">
 
-  <!-- Typography: Space Grotesk from Google Fonts -->
+  <!-- Typography: Inter for a very clean, minimalist look -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- CSS Link -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Theme Colors -->
-  <style>
-    :root {
-      --color-bg: #050505;      /* Deep Black */
-      --color-text: #FFFFFF;    /* Crisp White */
-      --color-accent: #E63946;  /* Vibrant Red */
-      --color-accent-hover: #D90429;
-      --color-gray: #A0A0A0;    /* Light Gray */
-      --color-border: #1F1F1F;  /* Dark borders */
-    }
-  </style>
+  <!-- Make sure this matches the name of your CSS file -->
+  <link rel="stylesheet" href="kimsm.css">
 </head>
-
 <body>
-  <!-- Custom Interactive Cursor -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
 
-  <!-- Navigation Bar -->
-  <header>
+  <!-- Minimal Navigation -->
+  <header class="navbar">
+    <div class="logo">Sumin Kim.</div>
     <nav>
-      <div class="logo">Sumin.</div>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#projects">Work</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Right Side Content Area -->
-  <div class="content-wrapper">
-    <main>
+  <main class="container">
 
     <!-- Hero Section -->
     <section id="hero" class="hero">
-      <h1>Hello, I'm <span class="highlight">Sumin Kim</span></h1>
-      <p>I build sleek, interactive websites that leave a lasting impression before you even scroll.</p>
-      <a href="#projects" class="btn-primary">View My Work</a>
+      <h1 class="hero-title">
+        Hello, I'm <br>
+        <span class="text-bold">Sumin Kim</span>
+      </h1>
+      <p class="hero-subtitle">
+        I build elegant, dynamic, and minimalist web experiences.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-outline">Explore My Work &darr;</a>
+      </div>
     </section>
 
-    <!-- Additional sections like About, Projects can go here -->
+    <!-- Projects Grid Section -->
+    <section id="projects" class="projects-section">
+      <h2 class="section-title">Selected Work</h2>
+      <div class="grid">
+
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-placeholder"></div>
+          <h3 class="project-name">Project One</h3>
+          <p class="project-desc">A brief description of this minimalist application.</p>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-placeholder"></div>
+          <h3 class="project-name">Project Two</h3>
+          <p class="project-desc">Clean UI/UX design featuring modern typography.</p>
+        </article>
+
+      </div>
+    </section>
 
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 Kim Sumin. Built with HTML & CSS.</p>
+  <!-- Minimalist Footer -->
+  <footer id="contact" class="footer">
+    <div class="container footer-content">
+      <p class="footer-text">Let's build something beautiful together.</p>
+      <a href="mailto:hello@example.com" class="footer-email">hello@example.com</a>
+      <p class="copyright">&copy; 2026 Sumin Kim. All rights reserved.</p>
+    </div>
   </footer>
 
-  <!-- JavaScript -->
-  <script src="script.js"></script>
-  </div>
 </body>
 </html>
