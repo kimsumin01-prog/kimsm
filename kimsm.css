@@ -195,3 +195,33 @@ body {
   font-size: 0.85rem;
   color: var(--text-muted);
 }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  /* Reduce padding on the container */
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  /* Stack the navigation vertically on small screens */
+  .navbar {
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    gap: 1.5rem;
+  }
+
+  /* Adjust hero section padding for mobile */
+  .hero {
+    padding-top: 2rem;
+    min-height: 50vh;
+  }
+
+  /* Reduce footer padding */
+  .footer {
+    padding: 2rem 0;
+  }
+}
