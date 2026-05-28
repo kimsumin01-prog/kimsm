@@ -140,6 +140,7 @@ body {
   gap: 1rem;
 }
 
+/* Fallback Gray Placeholders */
 .project-placeholder {
   width: 100%;
   height: 250px;
@@ -149,6 +150,19 @@ body {
 }
 
 .project-card:hover .project-placeholder {
+  transform: translateY(-5px);
+}
+
+/* Actual Project Images */
+.project-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border: 1px solid var(--border-light);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image {
   transform: translateY(-5px);
 }
 
@@ -198,12 +212,10 @@ body {
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-  /* Reduce padding on the container */
   .container {
     padding: 0 1.5rem;
   }
 
-  /* Stack the navigation vertically on small screens */
   .navbar {
     flex-direction: column;
     padding: 1.5rem;
@@ -214,13 +226,11 @@ body {
     gap: 1.5rem;
   }
 
-  /* Adjust hero section padding for mobile */
   .hero {
     padding-top: 2rem;
     min-height: 50vh;
   }
 
-  /* Reduce footer padding */
   .footer {
     padding: 2rem 0;
   }
