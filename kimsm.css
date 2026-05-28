@@ -115,7 +115,7 @@ body {
   color: var(--bg-color);
 }
 
-/* --- Projects Grid --- */
+/* --- Projects Section --- */
 .projects-section {
   padding: 6rem 0;
 }
@@ -132,12 +132,6 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 3rem;
-}
-
-.project-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
 }
 
 .project-card {
