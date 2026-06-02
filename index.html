@@ -12,6 +12,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="kimsm.css">
+
+  <style>
+    /* Inline helper styles for your custom project tags */
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background-color: #f0f0f0;
+      color: #333333;
+      border: 1px solid #e0e0e0;
+    }
+  </style>
 </head>
 <body>
 
@@ -47,12 +67,16 @@
 
         <article class="project-card">
           <div style="width: 100%; height: 250px; border-radius: 4px; overflow: hidden; margin-bottom: 15px; background: #f7f7f7;">
-            <img src="Leo.jpg" alt="Leo Project Image" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <img src="Leo.jpg" alt="Leopard pattern print format" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div class="project-tags">
+            <span class="tag">print</span>
+            <span class="tag">illustration</span>
           </div>
           <h3 class="project-name">
-            <a href="Leo.jpg" target="_blank" style="color: inherit; text-decoration: none;">Print Design Project &rarr;</a>
+            <a href="Leo.jpg" target="_blank" style="color: inherit; text-decoration: none;">Large Print Format &rarr;</a>
           </h3>
-          <p class="project-desc">My print format design project submitted on GitHub.</p>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666;">Leopard pattern inspired print format.</p>
         </article>
 
         <article class="project-card">
@@ -66,8 +90,23 @@
               style="width: 100%; height: 100%;">
             </model-viewer>
           </div>
-          <h3 class="project-name">Project Two</h3>
-          <p class="project-desc">Clean UI/UX design featuring modern typography.</p>
+          <div class="project-tags">
+            <span class="tag">3D</span>
+          </div>
+          <h3 class="project-name">3D Model</h3>
+          <p class="project-desc" style="font-size: 0.85rem; color: #666;">Interactive star 3D model.</p>
+        </article>
+
+        <article class="project-card">
+          <div style="width: 100%; height: 250px; background-color: #f7f7f7; border-radius: 4px; overflow: hidden; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #aaa;">
+            <span style="font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">Video Preview</span>
+          </div>
+          <div class="project-tags">
+            <span class="tag">video</span>
+            <span class="tag">motion</span>
+          </div>
+          <h3 class="project-name">Video Sequence</h3>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666;">Compilation of my video recordings made into a video sequence.</p>
         </article>
 
       </div>
