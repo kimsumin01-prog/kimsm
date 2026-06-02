@@ -31,6 +31,29 @@
       color: #333333;
       border: 1px solid #e0e0e0;
     }
+
+    /* Forces the grid layout to stay in one clean row */
+    .single-row-grid {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      gap: 20px !important;
+      width: 100% !important;
+      flex-wrap: nowrap !important; /* Prevents cards from dropping to the next line */
+    }
+
+    /* Ensures each individual card takes up equal space in the row */
+    .single-row-grid .project-card {
+      flex: 1 !important;
+      min-width: 0; /* Prevents flex boxes from stretching abnormally */
+    }
+
+    /* Keeps layouts responsive on small mobile screens */
+    @media (max-width: 768px) {
+      .single-row-grid {
+        flex-direction: column !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -63,10 +86,11 @@
 
     <section id="projects" class="projects-section">
       <h2 class="section-title">Selected Work</h2>
-      <div class="grid">
+
+      <div class="grid single-row-grid">
 
         <article class="project-card">
-          <div style="width: 100%; height: 250px; border-radius: 4px; overflow: hidden; margin-bottom: 15px; background: #f7f7f7;">
+          <div style="width: 100%; height: 250px; border-radius: 4px; overflow: hidden; margin-bottom: 15px; background: #f7f7f7; display: block;">
             <img src="Leo.jpg" alt="Leopard pattern print format" style="width: 100%; height: 100%; object-fit: cover; display: block;">
           </div>
           <div class="project-tags">
