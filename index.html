@@ -22,11 +22,10 @@
     }
 
     body {
-      /* Trendy, clean Helvetica-first font stack */
       font-family: "Helvetica Neue", Helvetica, Arial, -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: #ffffff;
       color: #111111;
-      letter-spacing: -0.02em; /* Clean, tight tracking for body text */
+      letter-spacing: -0.02em;
       transition: background-color 0.4s ease, color 0.4s ease;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -45,14 +44,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 40px 20px; /* Slightly premium spacing */
+      padding: 40px 20px;
       max-width: 1100px;
       margin: 0 auto;
       transition: background-color 0.4s ease, color 0.4s ease;
     }
     .logo {
       font-size: 1.4rem;
-      font-weight: 700; /* Bold Helvetica anchor */
+      font-weight: 700;
       letter-spacing: -0.04em;
       transition: color 0.4s ease;
     }
@@ -70,16 +69,16 @@
       transition: color 0.4s ease;
     }
 
-    /* Hero Layout */
+    /* Hero Layout (Restored Aesthetic Version) */
     .hero {
       padding: 140px 0 90px 0;
       transition: background-color 0.4s ease, color 0.4s ease;
     }
     .hero-title {
-      font-size: 4rem; /* Grand editorial size */
+      font-size: 4rem;
       font-weight: 300;
       line-height: 1.1;
-      letter-spacing: -0.05em; /* Trendy compressed tracking */
+      letter-spacing: -0.05em;
       margin-bottom: 25px;
       transition: color 0.4s ease;
     }
@@ -94,6 +93,14 @@
       letter-spacing: -0.02em;
       margin-bottom: 40px;
       transition: color 0.4s ease;
+    }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 30px; /* Enhanced proportions */
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 50px; /* Fully pill-shaped round button */
     }
 
     /* Sections Layout */
@@ -249,23 +256,24 @@
     body.project-hovered .nav-links a::after { background-color: #ffffff; }
     .nav-links a:hover::after { width: 100%; }
 
-    /* Button Style UI */
+    /* Round Button Aesthetic States */
     .btn-outline {
       border: 2px solid var(--point-color) !important;
       color: var(--point-color) !important;
       letter-spacing: -0.01em;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
     .btn-outline:hover {
       background-color: var(--point-color) !important;
       color: #fff !important;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(230, 57, 70, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(230, 57, 70, 0.2);
     }
     body.project-hovered .btn-outline { border-color: #ffffff !important; color: #ffffff !important; }
     body.project-hovered .btn-outline:hover {
       background-color: #ffffff !important;
       color: var(--point-color) !important;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
 
     /* Cards Layout */
@@ -289,7 +297,7 @@
       font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em; /* Elegant spacing for clean tech tags */
+      letter-spacing: 0.05em;
       padding: 4px 10px;
       border-radius: 3px;
       background-color: #f5f5f5;
@@ -361,7 +369,7 @@
 
   <main class="container">
 
-    <!-- Hero Section -->
+    <!-- Restored Aesthetic Rounded Button Hero Section -->
     <section id="hero" class="hero animate-on-load">
       <h1 class="hero-title">
         Hello, I'm <br>
