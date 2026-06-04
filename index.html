@@ -37,47 +37,63 @@
       transition: color 0.4s ease;
     }
 
-    /* Footer Default Overrides */
+    /* Base Layout Section Transitions */
+    .navbar, .hero, .about-section, .projects-section, .footer {
+      transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+    }
+
+    /* Default Footer Style */
     .footer {
       background-color: var(--point-color) !important;
-      color: #ffffff !important;
       padding: 60px 0;
-      transition: background-color 0.4s ease, color 0.4s ease;
     }
     .footer-text, .footer-email, .copyright {
       color: #ffffff !important;
+      transition: color 0.4s ease;
     }
     .footer-email:hover {
       opacity: 0.8;
     }
 
-    /* Active Background Inversions on Project Card Hover */
+    /* ========================================================
+       CRITICAL: TOTAL PAGE RED HOVER INVERSION
+       Forces EVERYTHING to change to red backdrop & white text
+       ======================================================== */
     body.project-hovered {
       background-color: var(--point-color) !important;
       color: #ffffff !important;
     }
 
+    body.project-hovered .navbar,
+    body.project-hovered .hero,
+    body.project-hovered .about-section,
+    body.project-hovered .projects-section,
+    body.project-hovered .footer {
+      background-color: var(--point-color) !important;
+      color: #ffffff !important;
+    }
+
+    /* Force all text blocks to switch to white readability mode */
     body.project-hovered .text-point {
       color: #ffffff !important;
     }
-
     body.project-hovered .navbar .logo,
     body.project-hovered .nav-links a,
+    body.project-hovered .hero-title,
+    body.project-hovered .hero-subtitle,
     body.project-hovered .section-title,
     body.project-hovered .about-text,
     body.project-hovered .project-name,
-    body.project-hovered .project-desc {
-      color: #ffffff !important;
-    }
-
-    /* Invert the footer to White background when project grid is active */
-    body.project-hovered .footer {
-      background-color: #ffffff !important;
-    }
+    body.project-hovered .project-desc,
     body.project-hovered .footer-text,
     body.project-hovered .footer-email,
     body.project-hovered .copyright {
-      color: var(--text-dark) !important;
+      color: #ffffff !important;
+    }
+
+    /* Gentle border color opacity adjustment when background is red */
+    body.project-hovered .about-section {
+      border-top-color: rgba(255, 255, 255, 0.2) !important;
     }
 
     /* Dynamic Page Entry/Scroll Animations */
@@ -96,16 +112,11 @@
       }
     }
 
-    /* About Section Styling */
+    /* About Section Layout */
     .about-section {
       padding: 80px 0;
       border-top: 1px solid #eee;
-      transition: border-color 0.4s ease;
     }
-    body.project-hovered .about-section {
-      border-top-color: rgba(255, 255, 255, 0.2);
-    }
-
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 2fr;
@@ -121,10 +132,9 @@
       font-size: 1.15rem;
       line-height: 1.7;
       color: #444;
-      transition: color 0.4s ease;
     }
 
-    /* Interactive Hover Effects for Navbar & Buttons */
+    /* Interactive Hover Effects for Navbar Links & Buttons */
     .nav-links a {
       position: relative;
       transition: color 0.3s ease;
@@ -171,6 +181,7 @@
     body.project-hovered .btn-outline:hover {
       background-color: #ffffff !important;
       color: var(--point-color) !important;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
 
     /* Interactive Cards */
@@ -189,4 +200,252 @@
       margin-bottom: 10px;
     }
     .tag {
-      font-size:
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background-color: #f0f0f0;
+      color: #333333;
+      border: 1px solid #e0e0e0;
+      transition: all 0.4s ease;
+    }
+
+    body.project-hovered .tag {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    .project-card:hover .tag {
+      background-color: #ffffff !important;
+      color: var(--point-color) !important;
+      border-color: #ffffff !important;
+    }
+
+    /* Interactive Lightbox Modal for Image Preview */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+      backdrop-filter: blur(5px);
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 80%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      animation: zoomIn 0.3s ease;
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.95); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .close-modal:hover {
+      color: var(--point-color);
+    }
+
+    /* Structural Grid Rules */
+    .single-row-grid {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      gap: 20px !important;
+      width: 100% !important;
+      flex-wrap: nowrap !important;
+    }
+
+    .single-row-grid .project-card {
+      flex: 1 !important;
+      min-width: 0;
+    }
+
+    @media (max-width: 768px) {
+      .single-row-grid {
+        flex-direction: column !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">Sumin Kim<span style="color: var(--point-color);" id="logo-dot">.</span></div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero animate-on-load">
+      <h1 class="hero-title">
+        Hello, I'm <br>
+        <span class="text-bold">Sumin Kim</span>
+      </h1>
+      <p class="hero-subtitle">
+        I build elegant, dynamic, and minimalist web experiences.
+      </p>
+      <div class="hero-actions">
+        <a href="#about" class="btn btn-outline">Learn More About Me &darr;</a>
+      </div>
+    </section>
+
+    <!-- About / Introduction Section -->
+    <section id="about" class="about-section animate-on-load">
+      <div class="about-grid">
+        <div>
+          <h2 class="section-title" style="margin-top: 0;">Who I Am</h2>
+        </div>
+        <div>
+          <p class="about-text">
+            I am a digital creator and developer focused on merging minimalist aesthetics with functional interactions. Specializing in front-end architecture, 3D web rendering, and graphic design systems, I turn complex concepts into beautiful, seamless user experiences.
+          </p>
+          <p class="about-text" style="margin-top: 15px;">
+            Whether mapping out a precise <span class="text-point">large-scale print layout</span>, embedding interactive <span class="text-point">3D web elements</span>, or editing modern video sequences—my core drive is to challenge creative limitations through code and design.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+      <h2 class="section-title">Selected Work</h2>
+
+      <div class="grid single-row-grid">
+
+        <!-- Project 1: Large Print Format -->
+        <article class="project-card" onclick="openPreview('Leo.jpg')">
+          <div style="width: 100%; height: 250px; border-radius: 4px; overflow: hidden; margin-bottom: 15px; background: #f7f7f7; display: block;">
+            <img src="./Leo.jpg" alt="Leopard pattern print format" onerror="this.src='Leo.JPG'; this.onerror=this.src='leopard.jpg'" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div class="project-tags">
+            <span class="tag">print</span>
+            <span class="tag">illustration</span>
+          </div>
+          <h3 class="project-name">
+            <span style="color: inherit; text-decoration: none;">Large Print Format &rarr;</span>
+          </h3>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666;">Leopard pattern inspired print format.</p>
+        </article>
+
+        <!-- Project 2: 3D Model -->
+        <article class="project-card">
+          <div style="width: 100%; height: 250px; background-color: #f7f7f7; border-radius: 4px; overflow: hidden; margin-bottom: 15px;">
+            <model-viewer
+              src="./star.glb"
+              alt="A 3D Blender Star Model"
+              camera-controls
+              auto-rotate
+              touch-action="pan-y"
+              style="width: 100%; height: 100%;">
+            </model-viewer>
+          </div>
+          <div class="project-tags">
+            <span class="tag">3D</span>
+          </div>
+          <h3 class="project-name">3D Model</h3>
+          <p class="project-desc" style="font-size: 0.85rem; color: #666;">Interactive star 3D model.</p>
+        </article>
+
+        <!-- Project 3: Video Sequence -->
+        <article class="project-card">
+          <div style="width: 100%; height: 250px; background-color: #f7f7f7; border-radius: 4px; overflow: hidden; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #aaa;">
+            <span style="font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">Video Preview</span>
+          </div>
+          <div class="project-tags">
+            <span class="tag">video</span>
+            <span class="tag">motion</span>
+          </div>
+          <h3 class="project-name">Video Sequence</h3>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666;">Compilation of my video recordings made into a video sequence.</p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Image Lightbox Modal Wrapper -->
+  <div id="imageModal" class="modal" onclick="closePreview()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
+  <footer id="contact" class="footer">
+    <div class="container footer-content">
+      <p class="footer-text">Let's build something beautiful together.</p>
+      <a href="mailto:kim_sumin01@student.smc.edu" class="footer-email">kim_sumin01@student.smc.edu</a>
+      <p class="copyright">&copy; 2026 Sumin Kim. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+
+  <!-- Interactive Actions & Color Switching Scripts -->
+  <script>
+    // Update active styles on navbar link selections
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function() {
+        document.querySelectorAll('.nav-links a').forEach(el => el.style.color = '');
+        this.style.color = 'var(--point-color)';
+      });
+    });
+
+    // Dynamic Full-Page Color Inversion Logic
+    const bodyElement = document.body;
+    const logoDot = document.getElementById('logo-dot');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    projectCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        bodyElement.classList.add('project-hovered');
+        logoDot.style.color = '#ffffff';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        bodyElement.classList.remove('project-hovered');
+        logoDot.style.color = 'var(--point-color)';
+      });
+    });
+
+    // Lightbox Modal functions
+    function openPreview(imageSrc) {
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImg");
+      modal.style.display = "block";
+      modalImg.src = imageSrc;
+    }
+
+    function closePreview() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
