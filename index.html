@@ -69,10 +69,25 @@
       transition: color 0.4s ease;
     }
 
-    /* Hero Layout (Restored Aesthetic Version) */
+    /* ========================================================
+       HERO SECTION - DEFAULT RED THEME
+       ======================================================== */
     .hero {
-      padding: 140px 0 90px 0;
+      padding: 140px 0;
+      background-color: #e63946; /* Default Red Background */
+      color: #ffffff;            /* Default White Text */
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
       transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    .hero .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
     .hero-title {
       font-size: 4rem;
@@ -80,6 +95,7 @@
       line-height: 1.1;
       letter-spacing: -0.05em;
       margin-bottom: 25px;
+      color: #ffffff;
       transition: color 0.4s ease;
     }
     .text-bold {
@@ -87,7 +103,7 @@
     }
     .hero-subtitle {
       font-size: 1.35rem;
-      color: #555;
+      color: rgba(255, 255, 255, 0.9); /* Subtle readable white */
       max-width: 520px;
       line-height: 1.45;
       letter-spacing: -0.02em;
@@ -97,10 +113,23 @@
     .btn {
       display: inline-block;
       text-decoration: none;
-      padding: 14px 30px; /* Enhanced proportions */
+      padding: 14px 30px;
       font-size: 0.9rem;
       font-weight: 600;
-      border-radius: 50px; /* Fully pill-shaped round button */
+      border-radius: 50px;
+    }
+    /* White button theme for the red hero background */
+    .hero .btn-outline {
+      border: 2px solid #ffffff !important;
+      color: #ffffff !important;
+      letter-spacing: -0.01em;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .hero .btn-outline:hover {
+      background-color: #ffffff !important;
+      color: #e63946 !important;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
 
     /* Sections Layout */
@@ -210,6 +239,16 @@
       border-top-color: rgba(255, 255, 255, 0.2) !important;
     }
 
+    /* Keeps button styled nicely when the overall page context goes inverted red */
+    body.project-hovered .hero .btn-outline {
+      border-color: #ffffff !important;
+      color: #ffffff !important;
+    }
+    body.project-hovered .hero .btn-outline:hover {
+      background-color: #ffffff !important;
+      color: var(--point-color) !important;
+    }
+
     /* Page load entry animations */
     .animate-on-load {
       animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -255,26 +294,6 @@
     }
     body.project-hovered .nav-links a::after { background-color: #ffffff; }
     .nav-links a:hover::after { width: 100%; }
-
-    /* Round Button Aesthetic States */
-    .btn-outline {
-      border: 2px solid var(--point-color) !important;
-      color: var(--point-color) !important;
-      letter-spacing: -0.01em;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    .btn-outline:hover {
-      background-color: var(--point-color) !important;
-      color: #fff !important;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(230, 57, 70, 0.2);
-    }
-    body.project-hovered .btn-outline { border-color: #ffffff !important; color: #ffffff !important; }
-    body.project-hovered .btn-outline:hover {
-      background-color: #ffffff !important;
-      color: var(--point-color) !important;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
 
     /* Cards Layout */
     .project-card {
@@ -367,10 +386,9 @@
     </nav>
   </header>
 
-  <main class="container">
-
-    <!-- Restored Aesthetic Rounded Button Hero Section -->
-    <section id="hero" class="hero animate-on-load">
+  <!-- Default Red Hero Background (Edge-to-Edge Fluid Layout) -->
+  <section id="hero" class="hero animate-on-load">
+    <div class="container">
       <h1 class="hero-title">
         Hello, I'm <br>
         <span class="text-bold">Sumin Kim</span>
@@ -381,7 +399,10 @@
       <div class="hero-actions">
         <a href="#about" class="btn btn-outline">Learn More About Me &darr;</a>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <main class="container">
 
     <!-- About / Introduction Section -->
     <section id="about" class="about-section animate-on-load">
