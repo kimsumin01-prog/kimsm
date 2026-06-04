@@ -7,13 +7,9 @@
   <title>Sumin Kim | Portfolio</title>
   <meta name="description" content="Portfolio of Sumin Kim.">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
   <style>
     /* ========================================================
-       1. CORE STRUCTURAL STYLES (Replaces external CSS)
+       1. CORE STRUCTURAL STYLES (Trendy Helvetica Version)
        ======================================================== */
     * {
       box-sizing: border-box;
@@ -26,11 +22,15 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      /* Trendy, clean Helvetica-first font stack */
+      font-family: "Helvetica Neue", Helvetica, Arial, -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: #ffffff;
       color: #111111;
+      letter-spacing: -0.02em; /* Clean, tight tracking for body text */
       transition: background-color 0.4s ease, color 0.4s ease;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .container {
@@ -45,78 +45,81 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 30px 20px;
+      padding: 40px 20px; /* Slightly premium spacing */
       max-width: 1100px;
       margin: 0 auto;
       transition: background-color 0.4s ease, color 0.4s ease;
     }
     .logo {
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: -0.5px;
+      font-size: 1.4rem;
+      font-weight: 700; /* Bold Helvetica anchor */
+      letter-spacing: -0.04em;
       transition: color 0.4s ease;
     }
     .nav-links {
       display: flex;
       list-style: none;
-      gap: 30px;
+      gap: 35px;
     }
     .nav-links a {
       text-decoration: none;
       color: #111111;
-      font-weight: 400;
-      font-size: 0.95rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: -0.01em;
       transition: color 0.4s ease;
     }
 
     /* Hero Layout */
     .hero {
-      padding: 120px 0 80px 0;
+      padding: 140px 0 90px 0;
       transition: background-color 0.4s ease, color 0.4s ease;
     }
     .hero-title {
-      font-size: 3.5rem;
+      font-size: 4rem; /* Grand editorial size */
       font-weight: 300;
-      line-height: 1.15;
-      letter-spacing: -1px;
-      margin-bottom: 20px;
+      line-height: 1.1;
+      letter-spacing: -0.05em; /* Trendy compressed tracking */
+      margin-bottom: 25px;
       transition: color 0.4s ease;
     }
     .text-bold {
-      font-weight: 600;
+      font-weight: 700;
     }
     .hero-subtitle {
-      font-size: 1.25rem;
-      color: #666;
-      max-width: 500px;
-      line-height: 1.5;
+      font-size: 1.35rem;
+      color: #555;
+      max-width: 520px;
+      line-height: 1.45;
+      letter-spacing: -0.02em;
       margin-bottom: 40px;
       transition: color 0.4s ease;
     }
 
     /* Sections Layout */
     .section-title {
-      font-size: 1.75rem;
-      font-weight: 600;
-      letter-spacing: -0.5px;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.04em;
       margin-bottom: 40px;
       transition: color 0.4s ease;
     }
     .about-section {
-      padding: 80px 0;
-      border-top: 1px solid #eee;
+      padding: 90px 0;
+      border-top: 1px solid #e5e5e5;
       transition: border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease;
     }
     .projects-section {
-      padding: 80px 0 140px 0;
+      padding: 90px 0 140px 0;
       transition: background-color 0.4s ease, color 0.4s ease;
     }
 
     /* Footer Layout */
     .footer {
-      padding: 80px 0;
+      padding: 90px 0;
       text-align: center;
-      background-color: #e63946 !important; /* Default Point Color */
+      background-color: #e63946 !important;
       transition: background-color 0.4s ease, color 0.4s ease;
     }
     .footer-content {
@@ -130,20 +133,26 @@
       transition: color 0.4s ease;
     }
     .footer-text {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
     }
     .footer-email {
-      font-size: 1.5rem;
-      font-weight: 600;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
       text-decoration: none;
       margin: 10px 0;
     }
     .footer-email:hover {
-      opacity: 0.8;
+      opacity: 0.85;
     }
     .copyright {
-      font-size: 0.85rem;
-      opacity: 0.6;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      opacity: 0.5;
     }
 
     /* ========================================================
@@ -156,7 +165,7 @@
 
     .text-point {
       color: var(--point-color);
-      font-weight: 600;
+      font-weight: 700;
       transition: color 0.4s ease;
     }
 
@@ -175,7 +184,6 @@
       color: #ffffff !important;
     }
 
-    /* Force all isolated text colors to shift for readability */
     body.project-hovered .text-point,
     body.project-hovered .navbar .logo,
     body.project-hovered .nav-links a,
@@ -197,10 +205,10 @@
 
     /* Page load entry animations */
     .animate-on-load {
-      animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -214,13 +222,14 @@
       .about-grid { grid-template-columns: 1fr; gap: 20px; }
     }
     .about-text {
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: #444;
+      font-size: 1.2rem;
+      line-height: 1.65;
+      font-weight: 300;
+      color: #333;
       transition: color 0.4s ease;
     }
 
-    /* Navigation Interactive Borders */
+    /* Navigation Interactive Link Accents */
     .nav-links a {
       position: relative;
     }
@@ -240,17 +249,18 @@
     body.project-hovered .nav-links a::after { background-color: #ffffff; }
     .nav-links a:hover::after { width: 100%; }
 
-    /* Button Layout & Interactive States */
+    /* Button Style UI */
     .btn-outline {
       border: 2px solid var(--point-color) !important;
       color: var(--point-color) !important;
-      transition: all 0.3s ease !important;
+      letter-spacing: -0.01em;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
     .btn-outline:hover {
       background-color: var(--point-color) !important;
       color: #fff !important;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(230, 57, 70, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(230, 57, 70, 0.15);
     }
     body.project-hovered .btn-outline { border-color: #ffffff !important; color: #ffffff !important; }
     body.project-hovered .btn-outline:hover {
@@ -260,31 +270,37 @@
 
     /* Cards Layout */
     .project-card {
-      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
       cursor: pointer;
     }
     .project-card:hover { transform: translateY(-8px); }
-    .project-name { transition: color 0.4s ease; }
-    .project-desc { transition: color 0.4s ease; }
+    .project-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-top: 5px;
+      transition: color 0.4s ease;
+    }
+    .project-desc { transition: color 0.4s ease; letter-spacing: -0.01em; }
 
     /* Custom Project Tags */
-    .project-tags { display: flex; gap: 8px; margin-bottom: 10px; }
+    .project-tags { display: flex; gap: 6px; margin-bottom: 12px; }
     .tag {
-      font-size: 0.75rem;
-      font-weight: 600;
+      font-size: 0.7rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.05em; /* Elegant spacing for clean tech tags */
       padding: 4px 10px;
-      border-radius: 4px;
-      background-color: #f0f0f0;
-      color: #333333;
-      border: 1px solid #e0e0e0;
+      border-radius: 3px;
+      background-color: #f5f5f5;
+      color: #222222;
+      border: 1px solid #e5e5e5;
       transition: all 0.4s ease;
     }
     body.project-hovered .tag {
-      background-color: rgba(255, 255, 255, 0.15);
+      background-color: rgba(255, 255, 255, 0.12);
       color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.4);
+      border-color: rgba(255, 255, 255, 0.3);
     }
     .project-card:hover .tag {
       background-color: #ffffff !important;
@@ -299,28 +315,28 @@
       z-index: 1000;
       padding-top: 60px;
       left: 0; top: 0; width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.9);
-      backdrop-filter: blur(5px);
+      background-color: rgba(0,0,0,0.92);
+      backdrop-filter: blur(8px);
     }
     .modal-content {
       margin: auto; display: block;
-      max-width: 80%; max-height: 80vh;
-      object-fit: contain; border-radius: 4px;
-      animation: zoomIn 0.3s ease;
+      max-width: 85%; max-height: 80vh;
+      object-fit: contain; border-radius: 2px;
+      animation: zoomIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    @keyframes zoomIn { from {transform: scale(0.95); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+    @keyframes zoomIn { from {transform: scale(0.96); opacity: 0;} to {transform: scale(1); opacity: 1;} }
     .close-modal {
-      position: absolute; top: 20px; right: 35px;
-      color: #fff; font-size: 40px; font-weight: bold; cursor: pointer;
+      position: absolute; top: 25px; right: 40px;
+      color: #fff; font-size: 42px; font-weight: 300; cursor: pointer;
     }
     .close-modal:hover { color: var(--point-color); }
 
-    /* Forces Grid system into a clean single row */
+    /* Flex Grid Layout */
     .single-row-grid {
       display: flex !important;
       flex-direction: row !important;
       justify-content: space-between !important;
-      gap: 20px !important;
+      gap: 24px !important;
       width: 100% !important;
       flex-wrap: nowrap !important;
     }
@@ -369,7 +385,7 @@
           <p class="about-text">
             I am a digital creator and developer focused on merging minimalist aesthetics with functional interactions. Specializing in front-end architecture, 3D web rendering, and graphic design systems, I turn complex concepts into beautiful, seamless user experiences.
           </p>
-          <p class="about-text" style="margin-top: 15px;">
+          <p class="about-text" style="margin-top: 20px;">
             Whether mapping out a precise <span class="text-point">large-scale print layout</span>, embedding interactive <span class="text-point">3D web elements</span>, or editing modern video sequences—my core drive is to challenge creative limitations through code and design.
           </p>
         </div>
@@ -382,9 +398,9 @@
 
       <div class="grid single-row-grid">
 
-        <!-- Project 1: Large Print Format (Fixed filename to match case-sensitive 'leo.jpg' on GitHub) -->
+        <!-- Project 1: Large Print Format -->
         <article class="project-card" onclick="openPreview('leo.jpg')">
-          <div style="width: 100%; height: 250px; border-radius: 4px; overflow: hidden; margin-bottom: 15px; background: #f7f7f7; display: block;">
+          <div style="width: 100%; height: 260px; border-radius: 3px; overflow: hidden; margin-bottom: 18px; background: #fcfcfc; display: block; border: 1px solid #eee;">
             <img src="./leo.jpg" alt="Leopard pattern print format" style="width: 100%; height: 100%; object-fit: cover; display: block;">
           </div>
           <div class="project-tags">
@@ -394,12 +410,12 @@
           <h3 class="project-name">
             <span style="color: inherit; text-decoration: none;">Large Print Format &rarr;</span>
           </h3>
-          <p class="project-desc" style="font-size: 0.9rem; color: #666;">Leopard pattern inspired print format.</p>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666; margin-top: 4px;">Leopard pattern inspired print format.</p>
         </article>
 
         <!-- Project 2: 3D Model -->
         <article class="project-card">
-          <div style="width: 100%; height: 250px; background-color: #f7f7f7; border-radius: 4px; overflow: hidden; margin-bottom: 15px;">
+          <div style="width: 100%; height: 260px; background-color: #fcfcfc; border-radius: 3px; overflow: hidden; margin-bottom: 18px; border: 1px solid #eee;">
             <model-viewer
               src="./star.glb"
               alt="A 3D Blender Star Model"
@@ -413,20 +429,20 @@
             <span class="tag">3D</span>
           </div>
           <h3 class="project-name">3D Model</h3>
-          <p class="project-desc" style="font-size: 0.85rem; color: #666;">Interactive star 3D model.</p>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666; margin-top: 4px;">Interactive star 3D model.</p>
         </article>
 
         <!-- Project 3: Video Sequence -->
         <article class="project-card">
-          <div style="width: 100%; height: 250px; background-color: #f7f7f7; border-radius: 4px; overflow: hidden; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #aaa;">
-            <span style="font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">Video Preview</span>
+          <div style="width: 100%; height: 260px; background-color: #fcfcfc; border-radius: 3px; overflow: hidden; margin-bottom: 18px; display: flex; align-items: center; justify-content: center; color: #999; border: 1px solid #eee;">
+            <span style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">Video Preview</span>
           </div>
           <div class="project-tags">
             <span class="tag">video</span>
             <span class="tag">motion</span>
           </div>
           <h3 class="project-name">Video Sequence</h3>
-          <p class="project-desc" style="font-size: 0.9rem; color: #666;">Compilation of my video recordings made into a video sequence.</p>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666; margin-top: 4px;">Compilation of my video recordings made into a video sequence.</p>
         </article>
 
       </div>
