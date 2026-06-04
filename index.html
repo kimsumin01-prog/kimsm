@@ -11,21 +11,144 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="kimsm.css">
-
   <style>
-    /* Global Smooth Scrolling and Transition Setup */
+    /* ========================================================
+       1. CORE STRUCTURAL STYLES (Replaces external CSS)
+       ======================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     html {
       scroll-behavior: smooth;
     }
 
     body {
+      font-family: 'Inter', sans-serif;
       background-color: #ffffff;
       color: #111111;
       transition: background-color 0.4s ease, color 0.4s ease;
+      overflow-x: hidden;
     }
 
-    /* Red Point Color Variable */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navbar Layout */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      transition: color 0.4s ease;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #111111;
+      font-weight: 400;
+      font-size: 0.95rem;
+      transition: color 0.4s ease;
+    }
+
+    /* Hero Layout */
+    .hero {
+      padding: 120px 0 80px 0;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      transition: color 0.4s ease;
+    }
+    .text-bold {
+      font-weight: 600;
+    }
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #666;
+      max-width: 500px;
+      line-height: 1.5;
+      margin-bottom: 40px;
+      transition: color 0.4s ease;
+    }
+
+    /* Sections Layout */
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      margin-bottom: 40px;
+      transition: color 0.4s ease;
+    }
+    .about-section {
+      padding: 80px 0;
+      border-top: 1px solid #eee;
+      transition: border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+    }
+    .projects-section {
+      padding: 80px 0 140px 0;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    /* Footer Layout */
+    .footer {
+      padding: 80px 0;
+      text-align: center;
+      background-color: #e63946 !important; /* Default Point Color */
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .footer-text, .footer-email, .copyright {
+      color: #ffffff !important;
+      transition: color 0.4s ease;
+    }
+    .footer-text {
+      font-size: 1.1rem;
+    }
+    .footer-email {
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin: 10px 0;
+    }
+    .footer-email:hover {
+      opacity: 0.8;
+    }
+    .copyright {
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
+    /* ========================================================
+       2. INTERACTIVE ACTIONS & RED POINT ACCENTS
+       ======================================================== */
     :root {
       --point-color: #e63946;
       --text-dark: #111111;
@@ -37,28 +160,7 @@
       transition: color 0.4s ease;
     }
 
-    /* Base Layout Section Transitions */
-    .navbar, .hero, .about-section, .projects-section, .footer {
-      transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
-    }
-
-    /* Default Footer Style */
-    .footer {
-      background-color: var(--point-color) !important;
-      padding: 60px 0;
-    }
-    .footer-text, .footer-email, .copyright {
-      color: #ffffff !important;
-      transition: color 0.4s ease;
-    }
-    .footer-email:hover {
-      opacity: 0.8;
-    }
-
-    /* ========================================================
-       CRITICAL: TOTAL PAGE RED HOVER INVERSION
-       Forces EVERYTHING to change to red backdrop & white text
-       ======================================================== */
+    /* THE FULL-PAGE HOVER INVERSION MASTER SWITCH */
     body.project-hovered {
       background-color: var(--point-color) !important;
       color: #ffffff !important;
@@ -73,10 +175,8 @@
       color: #ffffff !important;
     }
 
-    /* Force all text blocks to switch to white readability mode */
-    body.project-hovered .text-point {
-      color: #ffffff !important;
-    }
+    /* Force all isolated text colors to shift for readability */
+    body.project-hovered .text-point,
     body.project-hovered .navbar .logo,
     body.project-hovered .nav-links a,
     body.project-hovered .hero-title,
@@ -91,60 +191,41 @@
       color: #ffffff !important;
     }
 
-    /* Gentle border color opacity adjustment when background is red */
     body.project-hovered .about-section {
       border-top-color: rgba(255, 255, 255, 0.2) !important;
     }
 
-    /* Dynamic Page Entry/Scroll Animations */
+    /* Page load entry animations */
     .animate-on-load {
       animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
-
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* About Section Layout */
-    .about-section {
-      padding: 80px 0;
-      border-top: 1px solid #eee;
-    }
+    /* About Text Setup */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 40px;
     }
     @media (max-width: 768px) {
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
+      .about-grid { grid-template-columns: 1fr; gap: 20px; }
     }
     .about-text {
       font-size: 1.15rem;
       line-height: 1.7;
       color: #444;
+      transition: color 0.4s ease;
     }
 
-    /* Interactive Hover Effects for Navbar Links & Buttons */
+    /* Navigation Interactive Borders */
     .nav-links a {
       position: relative;
-      transition: color 0.3s ease;
     }
-    .nav-links a:hover {
-      color: var(--point-color) !important;
-    }
-    body.project-hovered .nav-links a:hover {
-      color: #111111 !important;
-    }
+    .nav-links a:hover { color: var(--point-color) !important; }
+    body.project-hovered .nav-links a:hover { color: #111111 !important; }
 
     .nav-links a::after {
       content: '';
@@ -156,13 +237,10 @@
       background-color: var(--point-color);
       transition: width 0.3s ease, background-color 0.4s ease;
     }
-    body.project-hovered .nav-links a::after {
-      background-color: #ffffff;
-    }
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    body.project-hovered .nav-links a::after { background-color: #ffffff; }
+    .nav-links a:hover::after { width: 100%; }
 
+    /* Button Layout & Interactive States */
     .btn-outline {
       border: 2px solid var(--point-color) !important;
       color: var(--point-color) !important;
@@ -174,31 +252,23 @@
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(230, 57, 70, 0.2);
     }
-    body.project-hovered .btn-outline {
-      border-color: #ffffff !important;
-      color: #ffffff !important;
-    }
+    body.project-hovered .btn-outline { border-color: #ffffff !important; color: #ffffff !important; }
     body.project-hovered .btn-outline:hover {
       background-color: #ffffff !important;
       color: var(--point-color) !important;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
 
-    /* Interactive Cards */
+    /* Cards Layout */
     .project-card {
-      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease !important;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
       cursor: pointer;
     }
-    .project-card:hover {
-      transform: translateY(-8px);
-    }
+    .project-card:hover { transform: translateY(-8px); }
+    .project-name { transition: color 0.4s ease; }
+    .project-desc { transition: color 0.4s ease; }
 
     /* Custom Project Tags */
-    .project-tags {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
+    .project-tags { display: flex; gap: 8px; margin-bottom: 10px; }
     .tag {
       font-size: 0.75rem;
       font-weight: 600;
@@ -211,7 +281,6 @@
       border: 1px solid #e0e0e0;
       transition: all 0.4s ease;
     }
-
     body.project-hovered .tag {
       background-color: rgba(255, 255, 255, 0.15);
       color: #ffffff;
@@ -223,49 +292,30 @@
       border-color: #ffffff !important;
     }
 
-    /* Interactive Lightbox Modal for Image Preview */
+    /* Interactive Lightbox Overlay Modal */
     .modal {
       display: none;
       position: fixed;
       z-index: 1000;
       padding-top: 60px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
+      left: 0; top: 0; width: 100%; height: 100%;
       background-color: rgba(0,0,0,0.9);
       backdrop-filter: blur(5px);
     }
     .modal-content {
-      margin: auto;
-      display: block;
-      max-width: 80%;
-      max-height: 80vh;
-      object-fit: contain;
-      border-radius: 4px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      margin: auto; display: block;
+      max-width: 80%; max-height: 80vh;
+      object-fit: contain; border-radius: 4px;
       animation: zoomIn 0.3s ease;
     }
-    @keyframes zoomIn {
-      from {transform: scale(0.95); opacity: 0;}
-      to {transform: scale(1); opacity: 1;}
-    }
+    @keyframes zoomIn { from {transform: scale(0.95); opacity: 0;} to {transform: scale(1); opacity: 1;} }
     .close-modal {
-      position: absolute;
-      top: 20px;
-      right: 35px;
-      color: #fff;
-      font-size: 40px;
-      font-weight: bold;
-      transition: 0.3s;
-      cursor: pointer;
+      position: absolute; top: 20px; right: 35px;
+      color: #fff; font-size: 40px; font-weight: bold; cursor: pointer;
     }
-    .close-modal:hover {
-      color: var(--point-color);
-    }
+    .close-modal:hover { color: var(--point-color); }
 
-    /* Structural Grid Rules */
+    /* Forces Grid system into a clean single row */
     .single-row-grid {
       display: flex !important;
       flex-direction: row !important;
@@ -274,16 +324,9 @@
       width: 100% !important;
       flex-wrap: nowrap !important;
     }
-
-    .single-row-grid .project-card {
-      flex: 1 !important;
-      min-width: 0;
-    }
-
+    .single-row-grid .project-card { flex: 1 !important; min-width: 0; }
     @media (max-width: 768px) {
-      .single-row-grid {
-        flex-direction: column !important;
-      }
+      .single-row-grid { flex-direction: column !important; }
     }
   </style>
 </head>
@@ -339,10 +382,10 @@
 
       <div class="grid single-row-grid">
 
-        <!-- Project 1: Large Print Format -->
-        <article class="project-card" onclick="openPreview('Leo.jpg')">
+        <!-- Project 1: Large Print Format (Fixed filename to match case-sensitive 'leo.jpg' on GitHub) -->
+        <article class="project-card" onclick="openPreview('leo.jpg')">
           <div style="width: 100%; height: 250px; border-radius: 4px; overflow: hidden; margin-bottom: 15px; background: #f7f7f7; display: block;">
-            <img src="./Leo.jpg" alt="Leopard pattern print format" onerror="this.src='Leo.JPG'; this.onerror=this.src='leopard.jpg'" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <img src="./leo.jpg" alt="Leopard pattern print format" style="width: 100%; height: 100%; object-fit: cover; display: block;">
           </div>
           <div class="project-tags">
             <span class="tag">print</span>
@@ -425,12 +468,12 @@
     projectCards.forEach(card => {
       card.addEventListener('mouseenter', () => {
         bodyElement.classList.add('project-hovered');
-        logoDot.style.color = '#ffffff';
+        if(logoDot) logoDot.style.color = '#ffffff';
       });
 
       card.addEventListener('mouseleave', () => {
         bodyElement.classList.remove('project-hovered');
-        logoDot.style.color = 'var(--point-color)';
+        if(logoDot) logoDot.style.color = 'var(--point-color)';
       });
     });
 
