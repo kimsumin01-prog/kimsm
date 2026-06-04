@@ -14,21 +14,49 @@
   <link rel="stylesheet" href="kimsm.css">
 
   <style>
-    /* Global Smooth Scrolling */
+    /* Global Smooth Scrolling and Transition Setup */
     html {
       scroll-behavior: smooth;
     }
 
-    /* Red Point Color & Interactive Accents */
+    body {
+      background-color: #ffffff;
+      color: #111111;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    /* Red Point Color Variable */
     :root {
       --point-color: #e63946;
-      --point-color-hover: #b81d24;
       --text-dark: #111111;
     }
 
     .text-point {
       color: var(--point-color);
       font-weight: 600;
+      transition: color 0.4s ease;
+    }
+
+    /* Active Background Inversions (Triggered via JS) */
+    body.project-hovered {
+      background-color: var(--point-color) !important;
+      color: #ffffff !important;
+    }
+
+    body.project-hovered .text-point {
+      color: #ffffff !important;
+    }
+
+    body.project-hovered .navbar .logo,
+    body.project-hovered .nav-links a,
+    body.project-hovered .section-title,
+    body.project-hovered .about-text,
+    body.project-hovered .project-name,
+    body.project-hovered .project-desc,
+    body.project-hovered .footer-text,
+    body.project-hovered .footer-email,
+    body.project-hovered .copyright {
+      color: #ffffff !important;
     }
 
     /* Dynamic Page Entry/Scroll Animations */
@@ -51,7 +79,12 @@
     .about-section {
       padding: 80px 0;
       border-top: 1px solid #eee;
+      transition: border-color 0.4s ease;
     }
+    body.project-hovered .about-section {
+      border-top-color: rgba(255, 255, 255, 0.2);
+    }
+
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 2fr;
@@ -67,6 +100,7 @@
       font-size: 1.15rem;
       line-height: 1.7;
       color: #444;
+      transition: color 0.4s ease;
     }
 
     /* Interactive Hover Effects for Navbar & Buttons */
@@ -77,6 +111,10 @@
     .nav-links a:hover {
       color: var(--point-color) !important;
     }
+    body.project-hovered .nav-links a:hover {
+      color: #111111 !important;
+    }
+
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -85,7 +123,10 @@
       bottom: -4px;
       left: 0;
       background-color: var(--point-color);
-      transition: width 0.3s ease;
+      transition: width 0.3s ease, background-color 0.4s ease;
+    }
+    body.project-hovered .nav-links a::after {
+      background-color: #ffffff;
     }
     .nav-links a:hover::after {
       width: 100%;
@@ -102,6 +143,14 @@
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(230, 57, 70, 0.2);
     }
+    body.project-hovered .btn-outline {
+      border-color: #ffffff !important;
+      color: #ffffff !important;
+    }
+    body.project-hovered .btn-outline:hover {
+      background-color: #ffffff !important;
+      color: var(--point-color) !important;
+    }
 
     /* Interactive Cards */
     .project-card {
@@ -110,10 +159,6 @@
     }
     .project-card:hover {
       transform: translateY(-8px);
-    }
-    .project-name a:hover {
-      color: var(--point-color) !important;
-      transition: color 0.2s ease;
     }
 
     /* Custom Project Tags */
@@ -132,11 +177,19 @@
       background-color: #f0f0f0;
       color: #333333;
       border: 1px solid #e0e0e0;
-      transition: all 0.2s ease;
+      transition: all 0.4s ease;
+    }
+
+    /* Tag styles while hovering a project card */
+    body.project-hovered .tag {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.4);
     }
     .project-card:hover .tag {
-      border-color: var(--point-color);
-      color: var(--point-color);
+      background-color: #ffffff !important;
+      color: var(--point-color) !important;
+      border-color: #ffffff !important;
     }
 
     /* Interactive Lightbox Modal for Image Preview */
@@ -152,7 +205,6 @@
       overflow: auto;
       background-color: rgba(0,0,0,0.9);
       backdrop-filter: blur(5px);
-      transition: opacity 0.3s ease;
     }
     .modal-content {
       margin: auto;
@@ -182,7 +234,7 @@
       color: var(--point-color);
     }
 
-    /* Forces the grid layout to stay in one clean row */
+    /* Layout structural rules */
     .single-row-grid {
       display: flex !important;
       flex-direction: row !important;
@@ -192,13 +244,11 @@
       flex-wrap: nowrap !important;
     }
 
-    /* Ensures each individual card takes up equal space in the row */
     .single-row-grid .project-card {
       flex: 1 !important;
       min-width: 0;
     }
 
-    /* Keeps layouts responsive on small mobile screens */
     @media (max-width: 768px) {
       .single-row-grid {
         flex-direction: column !important;
@@ -209,7 +259,7 @@
 <body>
 
   <header class="navbar">
-    <div class="logo">Sumin Kim<span style="color: var(--point-color);">.</span></div>
+    <div class="logo">Sumin Kim<span style="color: var(--point-color);" id="logo-dot">.</span></div>
     <nav>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
@@ -239,7 +289,7 @@
     <section id="about" class="about-section animate-on-load">
       <div class="about-grid">
         <div>
-          <h2 class="section-title" style="margin-top: 0;">Who I Am</h2>
+          <h2 class="section-title" style="margin-top: 0; transition: color 0.4s ease;">Who I Am</h2>
         </div>
         <div>
           <p class="about-text">
@@ -254,24 +304,23 @@
 
     <!-- Projects Section -->
     <section id="projects" class="projects-section">
-      <h2 class="section-title">Selected Work</h2>
+      <h2 class="section-title" style="transition: color 0.4s ease;">Selected Work</h2>
 
       <div class="grid single-row-grid">
 
-        <!-- Project 1: Large Print Format (Fixed path references) -->
+        <!-- Project 1: Large Print Format -->
         <article class="project-card" onclick="openPreview('Leo.jpg')">
           <div style="width: 100%; height: 250px; border-radius: 4px; overflow: hidden; margin-bottom: 15px; background: #f7f7f7; display: block;">
-            <!-- Using relative structure fallback directly safely targeting root file directory -->
-            <img src="./Leo.jpg" alt="Leopard pattern print format" onerror="this.src='Leo.JPG'; this.onerror=JSON.stringify(this.src='leopard.jpg')" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <img src="./Leo.jpg" alt="Leopard pattern print format" onerror="this.src='Leo.JPG'; this.onerror=this.src='leopard.jpg'" style="width: 100%; height: 100%; object-fit: cover; display: block;">
           </div>
           <div class="project-tags">
             <span class="tag">print</span>
             <span class="tag">illustration</span>
           </div>
-          <h3 class="project-name">
+          <h3 class="project-name" style="transition: color 0.4s ease;">
             <span style="color: inherit; text-decoration: none;">Large Print Format &rarr;</span>
           </h3>
-          <p class="project-desc" style="font-size: 0.9rem; color: #666;">Leopard pattern inspired print format.</p>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666; transition: color 0.4s ease;">Leopard pattern inspired print format.</p>
         </article>
 
         <!-- Project 2: 3D Model -->
@@ -289,8 +338,8 @@
           <div class="project-tags">
             <span class="tag">3D</span>
           </div>
-          <h3 class="project-name">3D Model</h3>
-          <p class="project-desc" style="font-size: 0.85rem; color: #666;">Interactive star 3D model.</p>
+          <h3 class="project-name" style="transition: color 0.4s ease;">3D Model</h3>
+          <p class="project-desc" style="font-size: 0.85rem; color: #666; transition: color 0.4s ease;">Interactive star 3D model.</p>
         </article>
 
         <!-- Project 3: Video Sequence -->
@@ -302,8 +351,8 @@
             <span class="tag">video</span>
             <span class="tag">motion</span>
           </div>
-          <h3 class="project-name">Video Sequence</h3>
-          <p class="project-desc" style="font-size: 0.9rem; color: #666;">Compilation of my video recordings made into a video sequence.</p>
+          <h3 class="project-name" style="transition: color 0.4s ease;">Video Sequence</h3>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666; transition: color 0.4s ease;">Compilation of my video recordings made into a video sequence.</p>
         </article>
 
       </div>
@@ -311,7 +360,7 @@
 
   </main>
 
-  <!-- Interactive Image Lightbox Modal Wrapper -->
+  <!-- Image Lightbox Modal Wrapper -->
   <div id="imageModal" class="modal" onclick="closePreview()">
     <span class="close-modal">&times;</span>
     <img class="modal-content" id="modalImg">
@@ -319,15 +368,15 @@
 
   <footer id="contact" class="footer">
     <div class="container footer-content">
-      <p class="footer-text">Let's build something beautiful together.</p>
-      <a href="mailto:kim_sumin01@student.smc.edu" class="footer-email" style="transition: color 0.2s ease;">kim_sumin01@student.smc.edu</a>
-      <p class="copyright">&copy; 2026 Sumin Kim. All rights reserved.</p>
+      <p class="footer-text" style="transition: color 0.4s ease;">Let's build something beautiful together.</p>
+      <a href="mailto:kim_sumin01@student.smc.edu" class="footer-email" style="transition: color 0.4s ease;">kim_sumin01@student.smc.edu</a>
+      <p class="copyright" style="transition: color 0.4s ease;">&copy; 2026 Sumin Kim. All rights reserved.</p>
     </div>
   </footer>
 
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 
-  <!-- Interactive Actions Script -->
+  <!-- Interactive Actions & Color Switching Scripts -->
   <script>
     // Update active styles on navbar link selections
     document.querySelectorAll('.nav-links a').forEach(link => {
@@ -337,7 +386,24 @@
       });
     });
 
-    // Lightbox open/close features
+    // Dynamic Full-Page Color Inversion Logic
+    const bodyElement = document.body;
+    const logoDot = document.getElementById('logo-dot');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    projectCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        bodyElement.classList.add('project-hovered');
+        logoDot.style.color = '#ffffff';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        bodyElement.classList.remove('project-hovered');
+        logoDot.style.color = 'var(--point-color)';
+      });
+    });
+
+    // Lightbox Modal functions
     function openPreview(imageSrc) {
       const modal = document.getElementById("imageModal");
       const modalImg = document.getElementById("modalImg");
