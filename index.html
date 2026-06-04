@@ -14,7 +14,108 @@
   <link rel="stylesheet" href="kimsm.css">
 
   <style>
-    /* Inline helper styles for your custom project tags */
+    /* Global Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Red Point Color & Interactive Accents */
+    :root {
+      --point-color: #e63946;
+      --point-color-hover: #b81d24;
+      --text-dark: #111111;
+    }
+
+    .text-point {
+      color: var(--point-color);
+      font-weight: 600;
+    }
+
+    /* Dynamic Page Entry/Scroll Animations */
+    .animate-on-load {
+      animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* About Section Styling */
+    .about-section {
+      padding: 80px 0;
+      border-top: 1px solid #eee;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 40px;
+    }
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+    .about-text {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    /* Interactive Hover Effects for Navbar & Buttons */
+    .nav-links a {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: var(--point-color) !important;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--point-color);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-outline {
+      border: 2px solid var(--point-color) !important;
+      color: var(--point-color) !important;
+      transition: all 0.3s ease !important;
+    }
+    .btn-outline:hover {
+      background-color: var(--point-color) !important;
+      color: #fff !important;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(230, 57, 70, 0.2);
+    }
+
+    /* Interactive Cards */
+    .project-card {
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease !important;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+    }
+    .project-name a:hover {
+      color: var(--point-color) !important;
+      transition: color 0.2s ease;
+    }
+
+    /* Custom Project Tags */
     .project-tags {
       display: flex;
       gap: 8px;
@@ -30,6 +131,11 @@
       background-color: #f0f0f0;
       color: #333333;
       border: 1px solid #e0e0e0;
+      transition: all 0.2s ease;
+    }
+    .project-card:hover .tag {
+      border-color: var(--point-color);
+      color: var(--point-color);
     }
 
     /* Forces the grid layout to stay in one clean row */
@@ -39,13 +145,13 @@
       justify-content: space-between !important;
       gap: 20px !important;
       width: 100% !important;
-      flex-wrap: nowrap !important; /* Prevents cards from dropping to the next line */
+      flex-wrap: nowrap !important;
     }
 
     /* Ensures each individual card takes up equal space in the row */
     .single-row-grid .project-card {
       flex: 1 !important;
-      min-width: 0; /* Prevents flex boxes from stretching abnormally */
+      min-width: 0;
     }
 
     /* Keeps layouts responsive on small mobile screens */
@@ -59,7 +165,7 @@
 <body>
 
   <header class="navbar">
-    <div class="logo">Sumin Kim.</div>
+    <div class="logo">Sumin Kim<span style="color: var(--point-color);">.</span></div>
     <nav>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
@@ -71,7 +177,8 @@
 
   <main class="container">
 
-    <section id="hero" class="hero">
+    <!-- Hero Section -->
+    <section id="hero" class="hero animate-on-load">
       <h1 class="hero-title">
         Hello, I'm <br>
         <span class="text-bold">Sumin Kim</span>
@@ -80,15 +187,34 @@
         I build elegant, dynamic, and minimalist web experiences.
       </p>
       <div class="hero-actions">
-        <a href="#projects" class="btn btn-outline">Explore My Work &darr;</a>
+        <a href="#about" class="btn btn-outline">Learn More About Me &darr;</a>
       </div>
     </section>
 
+    <!-- New About / Introduction Section -->
+    <section id="about" class="about-section animate-on-load">
+      <div class="about-grid">
+        <div>
+          <h2 class="section-title" style="margin-top: 0;">Who I Am</h2>
+        </div>
+        <div>
+          <p class="about-text">
+            I am a digital creator and developer focused on merging minimalist aesthetics with functional interactions. Specializing in front-end architecture, 3D web rendering, and graphic design systems, I turn complex concepts into beautiful, seamless user experiences.
+          </p>
+          <p class="about-text" style="margin-top: 15px;">
+            Whether mapping out a precise <span class="text-point">large-scale print layout</span>, embedding interactive <span class="text-point">3D web elements</span>, or editing modern video sequences—my core drive is to challenge creative limitations through code and design.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
     <section id="projects" class="projects-section">
       <h2 class="section-title">Selected Work</h2>
 
       <div class="grid single-row-grid">
 
+        <!-- Project 1 -->
         <article class="project-card">
           <div style="width: 100%; height: 250px; border-radius: 4px; overflow: hidden; margin-bottom: 15px; background: #f7f7f7; display: block;">
             <img src="Leo.jpg" alt="Leopard pattern print format" style="width: 100%; height: 100%; object-fit: cover; display: block;">
@@ -103,6 +229,7 @@
           <p class="project-desc" style="font-size: 0.9rem; color: #666;">Leopard pattern inspired print format.</p>
         </article>
 
+        <!-- Project 2 -->
         <article class="project-card">
           <div style="width: 100%; height: 250px; background-color: #f7f7f7; border-radius: 4px; overflow: hidden; margin-bottom: 15px;">
             <model-viewer
@@ -121,6 +248,7 @@
           <p class="project-desc" style="font-size: 0.85rem; color: #666;">Interactive star 3D model.</p>
         </article>
 
+        <!-- Project 3 -->
         <article class="project-card">
           <div style="width: 100%; height: 250px; background-color: #f7f7f7; border-radius: 4px; overflow: hidden; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #aaa;">
             <span style="font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">Video Preview</span>
@@ -141,12 +269,22 @@
   <footer id="contact" class="footer">
     <div class="container footer-content">
       <p class="footer-text">Let's build something beautiful together.</p>
-      <a href="mailto:kim_sumin01@student.smc.edu" class="footer-email">kim_sumin01@student.smc.edu</a>
+      <a href="mailto:kim_sumin01@student.smc.edu" class="footer-email" style="transition: color 0.2s ease;">kim_sumin01@student.smc.edu</a>
       <p class="copyright">&copy; 2026 Sumin Kim. All rights reserved.</p>
     </div>
   </footer>
 
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+
+  <!-- Script to update active styles on navbar click -->
+  <script>
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function() {
+        document.querySelectorAll('.nav-links a').forEach(el => el.style.color = '');
+        this.style.color = 'var(--point-color)';
+      });
+    });
+  </script>
 
 </body>
 </html>
