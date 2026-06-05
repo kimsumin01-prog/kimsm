@@ -308,7 +308,7 @@
       margin-top: 5px;
       transition: color 0.4s ease;
     }
-    .project-desc { transition: color 0.4s ease; letter-spacing: -0.01em; }
+    .project-desc { transition: color 0.4s ease; letter-spacing: -0.01em; line-height: 1.4; }
 
     /* Custom Project Tags */
     .project-tags { display: flex; gap: 6px; margin-bottom: 12px; }
@@ -351,10 +351,35 @@
       object-fit: contain; border-radius: 2px;
       animation: zoomIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
+    /* Dedicated Content Holders inside Modals */
+    .modal-3d-content, .modal-video-content {
+      margin: auto;
+      display: block;
+      width: 70vw;
+      height: 70vh;
+      max-width: 900px;
+      max-height: 600px;
+      background: #111;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: zoomIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-video-content video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
     @keyframes zoomIn { from {transform: scale(0.96); opacity: 0;} to {transform: scale(1); opacity: 1;} }
     .close-modal {
       position: absolute; top: 25px; right: 40px;
       color: #fff; font-size: 42px; font-weight: 300; cursor: pointer;
+      z-index: 1010;
     }
     .close-modal:hover { color: var(--point-color); }
 
@@ -436,16 +461,15 @@
             <span class="tag">print</span>
             <span class="tag">illustration</span>
           </div>
-          <h3 class="project-name">
-            <span style="color: inherit; text-decoration: none;">Large Print Format &rarr;</span>
-          </h3>
-          <p class="project-desc" style="font-size: 0.9rem; color: #666; margin-top: 4px;">Leopard pattern inspired print format.</p>
+          <h3 class="project-name">Large Print Format &rarr;</h3>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666; margin-top: 4px;">Leopard pattern inspired large format print layout focusing on pattern detail and texture alignment.</p>
         </article>
 
         <!-- Project 2: 3D Model -->
-        <article class="project-card">
+        <article class="project-card" onclick="openModelPreview()">
           <div style="width: 100%; height: 260px; background-color: #fcfcfc; border-radius: 3px; overflow: hidden; margin-bottom: 18px; border: 1px solid #eee;">
             <model-viewer
+              id="star-model"
               src="./star.glb"
               alt="A 3D Blender Star Model"
               camera-controls
@@ -456,30 +480,51 @@
           </div>
           <div class="project-tags">
             <span class="tag">3D</span>
+            <span class="tag">Blender</span>
           </div>
-          <h3 class="project-name">3D Model</h3>
-          <p class="project-desc" style="font-size: 0.9rem; color: #666; margin-top: 4px;">Interactive star 3D model.</p>
+          <h3 class="project-name">3D Model &rarr;</h3>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666; margin-top: 4px;">Interactive star asset crafted in Blender and embedded directly into the browser viewport for 360&deg; tracking.</p>
         </article>
 
         <!-- Project 3: Video Sequence -->
-        <div class="project-card">
-                    <h3>Project Three</h3>
-                    <div class="video-wrapper">
-                        <video width="100%" height="auto" autoplay loop muted playsinline>
-                            <source src="Sequence 01_1.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <p>Render output video demonstration sequence.</p>
-                </div>
+        <article class="project-card" onclick="openVideoPreview('Sequence 01_1.mp4')">
+          <div style="width: 100%; height: 260px; background-color: #000000; border-radius: 3px; overflow: hidden; margin-bottom: 18px; border: 1px solid #eee;">
+            <video width="100%" height="100%" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              <source src="Sequence 01_1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Video</span>
+            <span class="tag">Production</span>
+          </div>
+          <h3 class="project-name">Video Sequence &rarr;</h3>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666; margin-top: 4px;">A compilation of short clips from concerts I went to in LA, highlighting my video editing and sequencing abilities.</p>
+        </article>
+
+      </div>
     </section>
 
   </main>
 
-  <!-- Image Lightbox Modal Wrapper -->
+  <!-- Image Lightbox Modal (Project 1) -->
   <div id="imageModal" class="modal" onclick="closePreview()">
     <span class="close-modal">&times;</span>
     <img class="modal-content" id="modalImg">
+  </div>
+
+  <!-- 3D Model Lightbox Modal (Project 2) -->
+  <div id="modelViewerModal" class="modal">
+    <span class="close-modal" onclick="closeModelPreview()">&times;</span>
+    <div class="modal-3d-content" id="modal3DTarget"></div>
+  </div>
+
+  <!-- Video Lightbox Modal (Project 3) -->
+  <div id="videoModal" class="modal">
+    <span class="close-modal" onclick="closeVideoPreview()">&times;</span>
+    <div class="modal-video-content">
+      <video id="modalVideo" controls autoplay loop playsinline></video>
+    </div>
   </div>
 
   <footer id="contact" class="footer">
@@ -519,7 +564,7 @@
       });
     });
 
-    // Lightbox Modal functions
+    // Lightbox Modal functions for Images (Project 1)
     function openPreview(imageSrc) {
       const modal = document.getElementById("imageModal");
       const modalImg = document.getElementById("modalImg");
@@ -530,6 +575,56 @@
     function closePreview() {
       document.getElementById("imageModal").style.display = "none";
     }
+
+    // Lightbox Modal functions for 3D Model (Project 2)
+    function openModelPreview() {
+      const modal = document.getElementById("modelViewerModal");
+      const targetContainer = document.getElementById("modal3DTarget");
+      const originalModel = document.getElementById("star-model");
+
+      const clonedModel = originalModel.cloneNode(true);
+      clonedModel.removeAttribute('id');
+      clonedModel.style.width = "100%";
+      clonedModel.style.height = "100%";
+
+      targetContainer.innerHTML = "";
+      targetContainer.appendChild(clonedModel);
+      modal.style.display = "block";
+    }
+
+    function closeModelPreview() {
+      document.getElementById("modelViewerModal").style.display = "none";
+      document.getElementById("modal3DTarget").innerHTML = "";
+    }
+
+    // Lightbox Modal functions for Video Player (Project 3)
+    function openVideoPreview(videoSrc) {
+      const modal = document.getElementById("videoModal");
+      const modalVideo = document.getElementById("modalVideo");
+      modalVideo.src = videoSrc;
+      modal.style.display = "block";
+      modalVideo.play();
+    }
+
+    function closeVideoPreview() {
+      const modal = document.getElementById("videoModal");
+      const modalVideo = document.getElementById("modalVideo");
+      modalVideo.pause();
+      modalVideo.src = "";
+      modal.style.display = "none";
+    }
+
+    // Close overlays when clicking the outer empty background layout spaces
+    window.addEventListener('click', function(e) {
+      const modelModal = document.getElementById("modelViewerModal");
+      const videoModal = document.getElementById("videoModal");
+      if (e.target === modelModal) {
+        closeModelPreview();
+      }
+      if (e.target === videoModal) {
+        closeVideoPreview();
+      }
+    });
   </script>
 
 </body>
