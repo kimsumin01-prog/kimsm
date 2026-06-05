@@ -26,6 +26,7 @@
       background-color: #ffffff;
       color: #111111;
       letter-spacing: -0.02em;
+      transition: background-color 0.4s ease, color 0.4s ease;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -46,11 +47,13 @@
       padding: 40px 20px;
       max-width: 1100px;
       margin: 0 auto;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
     .logo {
       font-size: 1.4rem;
       font-weight: 700;
       letter-spacing: -0.04em;
+      transition: color 0.4s ease;
     }
     .nav-links {
       display: flex;
@@ -63,37 +66,23 @@
       font-weight: 500;
       font-size: 0.9rem;
       letter-spacing: -0.01em;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-    .nav-links a:hover {
-      color: #e63946;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #e63946;
-      transition: width 0.3s ease;
-    }
-    .nav-links a:hover::after {
-      width: 100%;
+      transition: color 0.4s ease;
     }
 
-    /* Hero Section - Bold Red Theme */
+    /* ========================================================
+       HERO SECTION - DEFAULT RED THEME
+       ======================================================== */
     .hero {
       padding: 140px 0;
-      background-color: #e63946;
-      color: #ffffff;
+      background-color: #e63946; /* Default Red Background */
+      color: #ffffff;            /* Default White Text */
       width: 100vw;
       position: relative;
       left: 50%;
       right: 50%;
       margin-left: -50vw;
       margin-right: -50vw;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
     .hero .container {
       max-width: 1100px;
@@ -107,17 +96,19 @@
       letter-spacing: -0.05em;
       margin-bottom: 25px;
       color: #ffffff;
+      transition: color 0.4s ease;
     }
     .text-bold {
       font-weight: 700;
     }
     .hero-subtitle {
       font-size: 1.35rem;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.9); /* Subtle readable white */
       max-width: 520px;
       line-height: 1.45;
       letter-spacing: -0.02em;
       margin-bottom: 40px;
+      transition: color 0.4s ease;
     }
     .btn {
       display: inline-block;
@@ -127,6 +118,7 @@
       font-weight: 600;
       border-radius: 50px;
     }
+    /* White button theme for the red hero background */
     .hero .btn-outline {
       border: 2px solid #ffffff !important;
       color: #ffffff !important;
@@ -140,120 +132,23 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
 
-    /* About Section Layout */
+    /* Sections Layout */
     .section-title {
       font-size: 2rem;
       font-weight: 700;
       line-height: 1.2;
       letter-spacing: -0.04em;
       margin-bottom: 40px;
+      transition: color 0.4s ease;
     }
     .about-section {
       padding: 90px 0;
       border-top: 1px solid #e5e5e5;
+      transition: border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease;
     }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 40px;
-    }
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; gap: 20px; }
-    }
-    .about-text {
-      font-size: 1.2rem;
-      line-height: 1.65;
-      font-weight: 300;
-      color: #333;
-    }
-    .text-point {
-      color: #e63946;
-      font-weight: 700;
-    }
-
-    /* ========================================================
-       WORK / PROJECTS SECTION (Dynamic Target Switch)
-       ======================================================== */
     .projects-section {
-      padding: 110px 0 140px 0;
-      background-color: #f9f9f9; /* Initial clean subtle background */
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
+      padding: 90px 0 140px 0;
       transition: background-color 0.4s ease, color 0.4s ease;
-    }
-    .projects-section .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    .projects-section .section-title {
-      transition: color 0.4s ease;
-    }
-
-    /* SPECIFIC WORK OVERRIDE HOVER SWITCH */
-    .projects-section.work-hovered {
-      background-color: #e63946 !important;
-      color: #ffffff !important;
-    }
-    .projects-section.work-hovered .section-title,
-    .projects-section.work-hovered .project-name,
-    .projects-section.work-hovered .project-desc {
-      color: #ffffff !important;
-    }
-
-    /* Cards Layout */
-    .project-card {
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      cursor: pointer;
-    }
-    .project-card:hover {
-      transform: translateY(-8px);
-    }
-    .project-name {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-top: 5px;
-      color: #111111;
-      transition: color 0.4s ease;
-    }
-    .project-desc {
-      font-size: 0.9rem;
-      color: #666;
-      margin-top: 4px;
-      letter-spacing: -0.01em;
-      transition: color 0.4s ease;
-    }
-
-    /* Custom Project Tags */
-    .project-tags { display: flex; gap: 6px; margin-bottom: 12px; }
-    .tag {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 4px 10px;
-      border-radius: 3px;
-      background-color: #ffffff;
-      color: #222222;
-      border: 1px solid #e5e5e5;
-      transition: all 0.4s ease;
-    }
-    /* Tags inside section when it gets hovered red */
-    .projects-section.work-hovered .tag {
-      background-color: rgba(255, 255, 255, 0.12);
-      color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-    /* Specific Active Hover card tag explosion state */
-    .project-card:hover .tag {
-      background-color: #ffffff !important;
-      color: #e63946 !important;
-      border-color: #ffffff !important;
     }
 
     /* Footer Layout */
@@ -261,6 +156,7 @@
       padding: 90px 0;
       text-align: center;
       background-color: #e63946 !important;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
     .footer-content {
       display: flex;
@@ -270,6 +166,7 @@
     }
     .footer-text, .footer-email, .copyright {
       color: #ffffff !important;
+      transition: color 0.4s ease;
     }
     .footer-text {
       font-size: 1.2rem;
@@ -294,6 +191,150 @@
       opacity: 0.5;
     }
 
+    /* ========================================================
+       2. INTERACTIVE ACTIONS & RED POINT ACCENTS
+       ======================================================== */
+    :root {
+      --point-color: #e63946;
+      --text-dark: #111111;
+    }
+
+    .text-point {
+      color: var(--point-color);
+      font-weight: 700;
+      transition: color 0.4s ease;
+    }
+
+    /* THE FULL-PAGE HOVER INVERSION MASTER SWITCH */
+    body.project-hovered {
+      background-color: var(--point-color) !important;
+      color: #ffffff !important;
+    }
+
+    body.project-hovered .navbar,
+    body.project-hovered .hero,
+    body.project-hovered .about-section,
+    body.project-hovered .projects-section,
+    body.project-hovered .footer {
+      background-color: var(--point-color) !important;
+      color: #ffffff !important;
+    }
+
+    body.project-hovered .text-point,
+    body.project-hovered .navbar .logo,
+    body.project-hovered .nav-links a,
+    body.project-hovered .hero-title,
+    body.project-hovered .hero-subtitle,
+    body.project-hovered .section-title,
+    body.project-hovered .about-text,
+    body.project-hovered .project-name,
+    body.project-hovered .project-desc,
+    body.project-hovered .footer-text,
+    body.project-hovered .footer-email,
+    body.project-hovered .copyright {
+      color: #ffffff !important;
+    }
+
+    body.project-hovered .about-section {
+      border-top-color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    /* Keeps button styled nicely when the overall page context goes inverted red */
+    body.project-hovered .hero .btn-outline {
+      border-color: #ffffff !important;
+      color: #ffffff !important;
+    }
+    body.project-hovered .hero .btn-outline:hover {
+      background-color: #ffffff !important;
+      color: var(--point-color) !important;
+    }
+
+    /* Page load entry animations */
+    .animate-on-load {
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* About Text Setup */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 40px;
+    }
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 20px; }
+    }
+    .about-text {
+      font-size: 1.2rem;
+      line-height: 1.65;
+      font-weight: 300;
+      color: #333;
+      transition: color 0.4s ease;
+    }
+
+    /* Navigation Interactive Link Accents */
+    .nav-links a {
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--point-color) !important; }
+    body.project-hovered .nav-links a:hover { color: #111111 !important; }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--point-color);
+      transition: width 0.3s ease, background-color 0.4s ease;
+    }
+    body.project-hovered .nav-links a::after { background-color: #ffffff; }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Cards Layout */
+    .project-card {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      cursor: pointer;
+    }
+    .project-card:hover { transform: translateY(-8px); }
+    .project-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-top: 5px;
+      transition: color 0.4s ease;
+    }
+    .project-desc { transition: color 0.4s ease; letter-spacing: -0.01em; }
+
+    /* Custom Project Tags */
+    .project-tags { display: flex; gap: 6px; margin-bottom: 12px; }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 3px;
+      background-color: #f5f5f5;
+      color: #222222;
+      border: 1px solid #e5e5e5;
+      transition: all 0.4s ease;
+    }
+    body.project-hovered .tag {
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .project-card:hover .tag {
+      background-color: #ffffff !important;
+      color: var(--point-color) !important;
+      border-color: #ffffff !important;
+    }
+
     /* Interactive Lightbox Overlay Modal */
     .modal {
       display: none;
@@ -315,16 +356,7 @@
       position: absolute; top: 25px; right: 40px;
       color: #fff; font-size: 42px; font-weight: 300; cursor: pointer;
     }
-    .close-modal:hover { color: #e63946; }
-
-    /* Page load entry animations */
-    .animate-on-load {
-      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .close-modal:hover { color: var(--point-color); }
 
     /* Flex Grid Layout */
     .single-row-grid {
@@ -344,7 +376,7 @@
 <body>
 
   <header class="navbar">
-    <div class="logo">Sumin Kim<span style="color: #e63946;">.</span></div>
+    <div class="logo">Sumin Kim<span style="color: var(--point-color);" id="logo-dot">.</span></div>
     <nav>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
@@ -354,7 +386,7 @@
     </nav>
   </header>
 
-  <!-- Default Red Hero Background -->
+  <!-- Default Red Hero Background (Edge-to-Edge Fluid Layout) -->
   <section id="hero" class="hero animate-on-load">
     <div class="container">
       <h1 class="hero-title">
@@ -389,31 +421,30 @@
       </div>
     </section>
 
-  </main>
-
-  <!-- Work Section with independent subtle background that smoothly inverts to red -->
-  <section id="projects" class="projects-section">
-    <div class="container">
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
       <h2 class="section-title">Selected Work</h2>
 
       <div class="grid single-row-grid">
 
         <!-- Project 1: Large Print Format -->
         <article class="project-card" onclick="openPreview('leo.jpg')">
-          <div style="width: 100%; height: 260px; border-radius: 3px; overflow: hidden; margin-bottom: 18px; background: #ffffff; display: block; border: 1px solid #eee;">
+          <div style="width: 100%; height: 260px; border-radius: 3px; overflow: hidden; margin-bottom: 18px; background: #fcfcfc; display: block; border: 1px solid #eee;">
             <img src="./leo.jpg" alt="Leopard pattern print format" style="width: 100%; height: 100%; object-fit: cover; display: block;">
           </div>
           <div class="project-tags">
             <span class="tag">print</span>
             <span class="tag">illustration</span>
           </div>
-          <h3 class="project-name">Large Print Format &rarr;</h3>
-          <p class="project-desc">Leopard pattern inspired print format.</p>
+          <h3 class="project-name">
+            <span style="color: inherit; text-decoration: none;">Large Print Format &rarr;</span>
+          </h3>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666; margin-top: 4px;">Leopard pattern inspired print format.</p>
         </article>
 
         <!-- Project 2: 3D Model -->
         <article class="project-card">
-          <div style="width: 100%; height: 260px; background-color: #ffffff; border-radius: 3px; overflow: hidden; margin-bottom: 18px; border: 1px solid #eee;">
+          <div style="width: 100%; height: 260px; background-color: #fcfcfc; border-radius: 3px; overflow: hidden; margin-bottom: 18px; border: 1px solid #eee;">
             <model-viewer
               src="./star.glb"
               alt="A 3D Blender Star Model"
@@ -427,12 +458,12 @@
             <span class="tag">3D</span>
           </div>
           <h3 class="project-name">3D Model</h3>
-          <p class="project-desc">Interactive star 3D model.</p>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666; margin-top: 4px;">Interactive star 3D model.</p>
         </article>
 
         <!-- Project 3: Video Sequence -->
         <article class="project-card">
-          <div style="width: 100%; height: 260px; background-color: #ffffff; border-radius: 3px; overflow: hidden; margin-bottom: 18px; display: flex; align-items: center; justify-content: center; color: #999; border: 1px solid #eee;">
+          <div style="width: 100%; height: 260px; background-color: #fcfcfc; border-radius: 3px; overflow: hidden; margin-bottom: 18px; display: flex; align-items: center; justify-content: center; color: #999; border: 1px solid #eee;">
             <span style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">Video Preview</span>
           </div>
           <div class="project-tags">
@@ -440,12 +471,13 @@
             <span class="tag">motion</span>
           </div>
           <h3 class="project-name">Video Sequence</h3>
-          <p class="project-desc">Compilation of my video recordings made into a video sequence.</p>
+          <p class="project-desc" style="font-size: 0.9rem; color: #666; margin-top: 4px;">Compilation of my video recordings made into a video sequence.</p>
         </article>
 
       </div>
-    </div>
-  </section>
+    </section>
+
+  </main>
 
   <!-- Image Lightbox Modal Wrapper -->
   <div id="imageModal" class="modal" onclick="closePreview()">
@@ -463,18 +495,30 @@
 
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 
-  <!-- Script Targeting ONLY the Work Section Background on Hover -->
+  <!-- Interactive Actions & Color Switching Scripts -->
   <script>
-    const workSection = document.getElementById('projects');
+    // Update active styles on navbar link selections
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function() {
+        document.querySelectorAll('.nav-links a').forEach(el => el.style.color = '');
+        this.style.color = 'var(--point-color)';
+      });
+    });
+
+    // Dynamic Full-Page Color Inversion Logic
+    const bodyElement = document.body;
+    const logoDot = document.getElementById('logo-dot');
     const projectCards = document.querySelectorAll('.project-card');
 
     projectCards.forEach(card => {
       card.addEventListener('mouseenter', () => {
-        workSection.classList.add('work-hovered'); // Shifts only the work background color
+        bodyElement.classList.add('project-hovered');
+        if(logoDot) logoDot.style.color = '#ffffff';
       });
 
       card.addEventListener('mouseleave', () => {
-        workSection.classList.remove('work-hovered'); // Restores it safely
+        bodyElement.classList.remove('project-hovered');
+        if(logoDot) logoDot.style.color = 'var(--point-color)';
       });
     });
 
