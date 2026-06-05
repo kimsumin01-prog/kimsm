@@ -27,13 +27,6 @@
             font-size: 2.5rem;
             letter-spacing: 2px;
         }
-        .section-title {
-            text-align: center;
-            margin: 60px 0 30px 0;
-            font-size: 2rem;
-            color: #00adb5;
-            letter-spacing: 1px;
-        }
 
         /* --- Project Grid Layout --- */
         .projects-grid {
@@ -86,8 +79,7 @@
         .model-container:hover::after {
             opacity: 1;
         }
-
-        /* Temporary visual placeholder styling - swap this out with your 3D canvas objects when ready */
+        /* Placeholder styling for your 3D canvas objects */
         .model-placeholder {
             width: 80px;
             height: 80px;
@@ -97,22 +89,13 @@
         }
         @keyframes spin { 100% { transform: rotate(300deg); } }
 
-        /* --- Video Sequence Section Styles --- */
-        .video-sequence-container {
-            max-width: 800px;
-            margin: 0 auto 40px auto;
-            background: #1e1e1e;
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid #333;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-        }
+        /* --- Video Container --- */
         .video-wrapper {
             width: 100%;
             border-radius: 8px;
             overflow: hidden;
-            background: #000;
             margin-bottom: 15px;
+            background: #000;
         }
         .video-wrapper video {
             display: block;
@@ -174,48 +157,52 @@
 <body>
 
     <section id="about">
-        <h2>My Portfolio</h2>
+        <h2>My Projects</h2>
 
         <div class="projects-grid">
 
+            <!-- PROJECT 1: Clickable 3D Model -->
             <div class="project-card">
                 <h3>Project One</h3>
                 <div class="model-container" data-model="Model 1 Expanded Visuals">
+                    <!-- Replace div below with your actual 3D canvas context -->
                     <div class="model-placeholder"></div>
                 </div>
                 <p>Interactive 3D workspace setup.</p>
             </div>
 
+            <!-- PROJECT 2: Clickable 3D Model (Fixed to copy Project 1) -->
             <div class="project-card">
                 <h3>Project Two</h3>
                 <div class="model-container" data-model="Model 2 Expanded Visuals">
+                    <!-- Replace div below with your actual 3D canvas context -->
                     <div class="model-placeholder" style="background: #ff5722;"></div>
                 </div>
                 <p>Interactive secondary 3D layout asset.</p>
             </div>
 
-        </div>
-
-        <h3 class="section-title">Video Sequence</h3>
-        <div class="video-sequence-container">
-            <div class="video-wrapper">
-                <video width="100%" height="auto" autoplay loop muted playsinline>
-                    <source src="Sequence 01_1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <!-- PROJECT 3: Showcasing the Video Asset -->
+            <div class="project-card">
+                <h3>Project Three</h3>
+                <div class="video-wrapper">
+                    <video width="100%" height="auto" autoplay loop muted playsinline>
+                        <source src="Sequence 01_1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <p>Render output video demonstration sequence.</p>
             </div>
-            <p style="color: #aaa; font-size: 0.95rem; line-height: 1.5;">
-                This section showcases the continuous render output sequence for the third project implementation.
-            </p>
-        </div>
 
+        </div>
     </section>
 
+    <!-- Global Modal Structure for viewing bigger models -->
     <div id="viewModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" id="closeModal">&times;</span>
             <div id="modal-target-view">
-                </div>
+                <!-- Target injected via JS dynamically -->
+            </div>
         </div>
     </div>
 
@@ -226,7 +213,7 @@
         const closeModal = document.getElementById('closeModal');
         const modalTarget = document.getElementById('modal-target-view');
 
-        // Loop through all 3D components with the class name to make them clickable
+        // Loop through all 3D components with the class name
         containers.forEach(container => {
             container.addEventListener('click', () => {
                 const modelIdentifier = container.getAttribute('data-model');
